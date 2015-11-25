@@ -1,6 +1,7 @@
 package edu.esprit.shop.presentation.converters;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -10,10 +11,10 @@ import javax.inject.Inject;
 import edu.esprit.shop.persistence.Category;
 import edu.esprit.shop.services.CatalogServiceLocal;
 
-@FacesConverter("cc")
+@ManagedBean
 public class CategoryConverter implements Converter{
 	
-	@Inject
+	@EJB
 	private CatalogServiceLocal catalogServiceLocal;
 
 	public Object getAsObject(FacesContext context, UIComponent component,

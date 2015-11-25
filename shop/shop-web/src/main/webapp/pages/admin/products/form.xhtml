@@ -19,7 +19,7 @@
 				<h:outputText value="Stock" />
 				<h:inputText value="#{productsMB.product.stock}" />
 				<h:outputText value="Category" />
-				<h:selectOneMenu value="#{productsMB.product.category}" converter="cc">
+				<h:selectOneMenu value="#{productsMB.product.category}" converter="#{categoryConverter}">
 					<f:selectItems value="#{productsMB.categories}" var="c"  itemValue="#{c}" itemLabel="#{c.name}"/>
 				</h:selectOneMenu>
 				<h:panelGrid columns="3">
