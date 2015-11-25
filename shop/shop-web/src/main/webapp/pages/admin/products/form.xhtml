@@ -9,6 +9,7 @@
 	
 	
 	
+	
 		<h:form rendered="#{productsMB.formDisplayed}">
 			<h:panelGrid columns="2">
 				<h:outputText value="Name" />
@@ -17,9 +18,13 @@
 				<h:inputText value="#{productsMB.product.unitCost}" />
 				<h:outputText value="Stock" />
 				<h:inputText value="#{productsMB.product.stock}" />
+				<h:outputText value="Category" />
+				<h:selectOneMenu value="#{productsMB.product.category}" converter="cc">
+					<f:selectItems value="#{productsMB.categories}" var="c"  itemValue="#{c}" itemLabel="#{c.name}"/>
+				</h:selectOneMenu>
 				<h:panelGrid columns="3">
 					<h:commandButton immediate="true" actionListener="#{productsMB.doCancel}" value="cancel" />
-					<h:commandButton immediate="true" actionListener="#{productsMB.doSaveProduct}" value="save" />
+					<h:commandButton actionListener="#{productsMB.doSaveProduct}" value="save" />
 					<h:commandButton actionListener="#{productsMB.doDeleteProduct}" value="delete" />
 				</h:panelGrid>
 			</h:panelGrid>
