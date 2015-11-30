@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+	
+	
+	<ui:define name="pageTitle" >register</ui:define>
+	<ui:define name="pageContent" >
+		
+		<h2>Customer registration</h2>
+		<hr/>
+		<h:form id="register">
+			<h:panelGrid columns="3">
+			
+				<h:outputText value="Login" />
+				<h:inputText id="login" 
+							 value="#{register.customer.login}" 
+							 required="true" 
+							 requiredMessage="Login is required!"
+							 validator="#{register.validateLoginUnicity}">
+				<f:ajax event="blur" execute="@this" render="loginMessage"/>			 
+				</h:inputText>
+							 
+				<h:message id="loginMessage" for="login" styleClass="error"/>
+				
+				<h:outputText value="Pasword" />
+				<h:inputSecret id="password" 
+				               value="#{register.customer.password}"
+				               validatorMessage="Between 6 and 12 digits!" 
+				               required="true"
+				               requiredMessage="Password is required!">
+					<f:validateLength maximum="12" minimum="6"/>
+					<f:ajax event="blur" execute="@this" render="passwordMessage"/>
+				</h:inputSecret>
+				<h:message id="passwordMessage" for="password" styleClass="error"/>
+				
+				<h:outputText value="Email" />
+				<h:inputText id="email"
+				             value="#{register.customer.email}" 
+				             required="true" 
+				             requiredMessage="Email is required!" 
+				             validatorMessage="Invalid email! ex : user@esprit.tn">
+					<f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$"/>
+					<f:ajax event="blur" execute="@this" render="emailMessage"/>
+				</h:inputText>
+				<h:message id="emailMessage" for="email" styleClass="error"/>
+				
+				<h:outputText value="Date of Birth" />
+				<h:inputText id="birthDate"
+				             value="#{register.customer.birthDate}"
+				             pt:type="date" required="true"
+				             requiredMessage="Birth date is required!">
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+					<f:ajax event="blur" execute="@this" render="birthDateMessage"/>
+				</h:inputText>
+				<h:message id="birthDateMessage" for="birthDate" styleClass="error"/>
+				
+				<h:commandButton immediate="true" action="/pages/welcome?faces-redirect=true" value="cancel" />
+				<h:commandButton action="#{register.doRegister()}" value="register" />
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

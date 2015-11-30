@@ -7,9 +7,10 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<h:form>
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="3">
 			<h:commandLink action="/pages/welcome?faces-redirect=true" value="WELCOME" />
-			<h:commandLink action="/pages/login?faces-redirect=true" value="LOGIN" />
+			<h:commandLink rendered="#{empty identity.user}" action="/pages/login?faces-redirect=true" value="LOGIN" />
+			<h:commandLink rendered="#{empty identity.user}" action="/pages/register?faces-redirect=true" value="REGISTER" />
 		</h:panelGrid>
 	</h:form>
 	

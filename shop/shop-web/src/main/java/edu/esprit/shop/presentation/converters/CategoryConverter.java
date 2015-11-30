@@ -28,7 +28,11 @@ public class CategoryConverter implements Converter{
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {
 		String eqString = null;
-		eqString = ((Category)value).getName();
+		if (value==null || value.equals("")) {
+			eqString = "";
+		}else{
+			eqString = ((Category)value).getName();
+		}
 		return eqString;
 	}
 
