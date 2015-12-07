@@ -44,7 +44,7 @@ public class AdminZoneSecurityFilter implements Filter{
 			chain.doFilter(req, resp);
 		}else{
 			req.getSession().invalidate();
-			resp.sendRedirect(req.getContextPath()+"/login.jsf");
+			resp.sendRedirect(req.getContextPath()+"/pages/login.jsf");
 		}
 		
 	}
